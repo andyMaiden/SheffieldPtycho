@@ -45,7 +45,7 @@ function [obj, probe] = HIVE(expt, recon, probe)
 % Andrew. M. Maiden, Wenjie Mei and Peng Li,                              %
 % "WASP: Weighted Average of Sequential Projections for ptychographic     %
 % phase retrieval,"                                                       %
-% XXX, pp. XX-XX (2024).                                                  %                                                  %
+% XXX, pp. XX-XX (2024).                                                  %                                                 
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -184,7 +184,7 @@ end
 
 function [numP,denP,numO,denO] = WASPWorker(dps,obj,probe,tlX,tlY,brX,brY,recon)
 
-% initialise worker s numerator and denominator sums
+% initialise worker numerator and denominator sums
 numP = 0*probe; denP = 0*probe; numO = 0*obj; denO = 0*obj;
 
 for kk = 1:recon.subIters
