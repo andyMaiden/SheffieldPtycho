@@ -111,15 +111,15 @@ for k = 1:recon.iters
 
         % sequential projection update of object and probe
         obj(tlY(j):brY(j),tlX(j):brX(j)) = objBox + ...
-            conj(probe).*(revisedEW - EW)./((1-recon.alpha)*abs(probe).^2 + recon.alpha*max(abs(probe).^2,[],'all'));
+            conj(probe).*(revisedEW - currentEW)./(abs(probe).^2 + recon.alpha*mean(abs(probe).^2,'all'));
 
-        probe = probe + conj(objBox).*(revisedEW - EW)./(recon.beta*max(abs(objBox).^2,[],'all'));
+        probe = probe + conj(objBox).*(revisedEW - currentEW)./(abs(objBox).^2 + recon.beta);
 
-        % alternative update functions (comment/uncomment as desired):
+        % original rPIE update functions (comment/uncomment as desired):
         % obj(tlY(j):brY(j),tlX(j):brX(j)) = objBox + ...
-        %   conj(probe).*(revisedEW - currentEW)./(abs(probe).^2 + recon.alpha*mean(abs(probe).^2,'all'));
+        %   conj(probe).*(revisedEW - EW)./((1-recon.alpha)*abs(probe).^2 + recon.alpha*max(abs(probe).^2,[],'all'));
         %
-        % probe = probe + conj(objBox).*(revisedEW - currentEW)./(abs(objBox).^2 + recon.beta);
+        % probe = probe + conj(objBox).*(revisedEW - EW)./(recon.beta*max(abs(objBox).^2,[],'all'));
 
     end
 
