@@ -190,7 +190,7 @@ numP = 0*probe; denP = 0*probe; numO = 0*obj; denO = 0*obj;
 for kk = 1:recon.subIters
 
     % randomise the diffraction pattern order for sequential projections
-    shuffleOrder = randperm(size(expt.dps,3));
+    shuffleOrder = randperm(size(dps,3));
 
     for j = shuffleOrder
 
