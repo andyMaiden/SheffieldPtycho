@@ -113,7 +113,7 @@ end
 recon.DPsPerWorker = ceil(size(expt.dps,3)/recon.numWorkers);
 
 % stop any current parallel pool and start a new one
-delete(gcp);
+delete(gcp('nocreate'));
 parpool(recon.numWorkers);
 
 % randomly shuffle the data and allocate portions to the worker WASPs
@@ -175,6 +175,9 @@ end
 % format probe and obj for return
 probe = gather(probe);
 obj   = gather(obj);
+
+% close the parallel pool
+delete(gcp);
 
 end
 
