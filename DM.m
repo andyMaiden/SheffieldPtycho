@@ -123,10 +123,10 @@ for k = 1:recon.iters
         tempEW = probe.*obj(tlY(j):brY(j),tlX(j):brX(j));
 
         % update current exit wave to conform with diffraction data
-        revisedEW = ifft2(expt.dps(:,:,j).*sign(fft2(tempEW)));
+        revisedEW = ifft2(expt.dps(:,:,j).*sign(fft2(2*tempEW - EWs(:,:,j))));
 
         % update and store new exit wave
-        EWs(:,:,j) = revisedEW - tempEW + EWs(:,:,j);
+        EWs(:,:,j) = EWs(:,:,j) + revisedEW - tempEW;
 
     end
 
