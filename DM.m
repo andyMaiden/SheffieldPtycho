@@ -119,17 +119,14 @@ for k = 1:recon.iters
     % exit wave update loop
     for j = 1:J
 
-        % calculate the Jth exit wave
+        % calculate the jth exit wave
         tempEW = probe.*obj(tlY(j):brY(j),tlX(j):brX(j));
 
-        % update exit wave to conform with diffraction data
-        revisedEW = ifft2(expt.dps(:,:,j).*sign(fft2(2*tempEW - EWs(:,:,j))));
+        % update current exit wave to conform with diffraction data
+        revisedEW = ifft2(expt.dps(:,:,j).*sign(fft2(tempEW)));
 
-        % calculate second relaxed reflection
-        tempEW = 2*recon.beta*revisedEW + (1-2*recon.beta)*tempEW;
-
-        % averaging step
-        EWs(:,:,j) = 0.5*(tempEW + EWs(:,:,j));
+        % update and store new exit wave
+        EWs(:,:,j) = revisedEW - tempEW + EWs(:,:,j);
 
     end
 

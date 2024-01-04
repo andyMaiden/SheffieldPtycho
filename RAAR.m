@@ -121,10 +121,10 @@ for k = 1:recon.iters
     for j = 1:J
 
         % calculate the jth exit wave
-        tempEW = probe.*obj(tlY(j):brY(j),tlX(j):brX(j));
+        tempEW = 2*probe.*obj(tlY(j):brY(j),tlX(j):brX(j)) - EWs(:,:,j);
 
         % update exit wave to conform with diffraction data
-        revisedEW = ifft2(expt.dps(:,:,j).*sign(fft2(2*tempEW - EWs(:,:,j))));
+        revisedEW = ifft2(expt.dps(:,:,j).*sign(fft2(tempEW)));
 
         % calculate second relaxed reflection
         tempEW = 2*recon.beta*revisedEW + (1-2*recon.beta)*tempEW;

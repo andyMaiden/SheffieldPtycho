@@ -118,8 +118,8 @@ for k = 1:recon.iters
 
         % update exit wave to conform with diffraction data
         objBox     = obj(tlY(j):brY(j),tlX(j):brX(j));
-        currentEW  = probe.*objBox;
-        EWs(:,:,j) = ifft2(expt.dps(:,:,j).*sign(fft2(currentEW)));
+        tempEW     = probe.*objBox;
+        EWs(:,:,j) = ifft2(expt.dps(:,:,j).*sign(fft2(tempEW)));
 
     end
 
